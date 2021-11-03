@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/ppattamasaevi/everydayhealth-api-service/issues"
   },
-  "homepage": "https://github.com/ppattamasaevi/everydayhealth-api-service#readme"
+  "homepage": "https://github.com/ppattamasaevi/everydayhealth-api-service#readme",
+  "dependencies": {
+    "fast-csv": "^4.3.6",
+    "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
 }
