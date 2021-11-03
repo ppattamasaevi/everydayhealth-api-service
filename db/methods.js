@@ -15,7 +15,18 @@ module.exports = {
         console.error(err);
       } else {
         console.log(results);
-        return results.length;
+        return results;
+      }
+    });
+  },
+  // returns array of all actions against a single newsletter
+  getNLActions: (nlId) => {
+    UserActions.find({ newsletter_id: nlId }, (err, results) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(results.length);
+        return results;
       }
     });
   },
