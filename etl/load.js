@@ -9,6 +9,8 @@ const csvParser = parse({ headers: true })
     saveOne(row);
   })
   .on("error", (error) => console.error(error.message))
-  .on("end", (rowCount) => console.log(`Finished parsing ${rowCount} rows`));
+  .on("end", (rowCount) =>
+    console.log(`Finished processing ${rowCount} rows of CSV data`)
+  );
 
 csvStream.pipe(csvParser);

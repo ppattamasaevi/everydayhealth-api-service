@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,13 @@
   },
   "homepage": "https://github.com/ppattamasaevi/everydayhealth-api-service#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "fast-csv": "^4.3.6",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
+    "nodemon": "^2.0.14",
     "prettier": "^2.4.1"
   }
 }

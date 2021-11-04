@@ -11,11 +11,14 @@ module.exports = {
   // returns array of all actions by a single user
   getUserActions: async (userId) => {
     try {
-      const allActionsByUser = await UserActions.find({ user_id: userId });
+      const allActionsByUser = await UserActions.find({ user_id: userId }).sort(
+        { activity_date: 1 }
+      );
       console.log(`Found ${allActionsByUser.length} user activity docs`);
       return allActionsByUser;
     } catch (err) {
       console.error(err.message);
+      return err;
     }
   },
   // returns array of all actions against a single newsletter
@@ -30,6 +33,7 @@ module.exports = {
       return allNewsletterActions;
     } catch (err) {
       console.error(err.message);
+      return err;
     }
   },
 };
