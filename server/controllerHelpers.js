@@ -14,4 +14,9 @@ const getTotalCountsByDate = async (id, callback) => {
   return results;
 };
 
-module.exports = { getDateString, getTotalCountsByDate };
+const errorIfInvalidID = (id) => {
+  if (Number.isNaN(Number(id)))
+    throw new Error("Requested ID must be a number.");
+};
+
+module.exports = { getDateString, getTotalCountsByDate, errorIfInvalidID };

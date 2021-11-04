@@ -1,7 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const { getUserActions, getNLActions } = require("../db/methods");
-const { getDateString, getTotalCountsByDate } = require("./controllerHelpers");
+const {
+  getDateString,
+  getTotalCountsByDate,
+  errorIfInvalidID,
+} = require("./controllerHelpers");
 
 const app = express();
 
@@ -10,6 +14,7 @@ const app = express();
 app.get("/nlsummary/:nlId", async (req, res, next) => {
   const nlId = req.params.nlId;
   try {
+    errorIfInvalidID(nlId);
     const results = await getTotalCountsByDate(nlId, getNLActions);
     results.description = `Summary of daily activities for newsletter ID: ${nlId}`;
     res.json(results);
@@ -23,6 +28,7 @@ app.get("/nlsummary/:nlId", async (req, res, next) => {
 app.get("/usersummary/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   try {
+    errorIfInvalidID(nlId);
     const results = await getTotalCountsByDate(userId, getUserActions);
     results.description = `Summary of daily activities by user ID: ${userId}`;
     res.json(results);
@@ -36,6 +42,7 @@ app.get("/usersummary/:userId", async (req, res, next) => {
 app.get("/nlactionsummary/:nlId", async (req, res, next) => {
   const nlId = req.params.nlId;
   try {
+    errorIfInvalidID(nlId);
     const results = { data: {} };
     const allActivities = await getNLActions(nlId);
     for (const activity of allActivities) {
