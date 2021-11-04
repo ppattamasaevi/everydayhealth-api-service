@@ -14,9 +14,12 @@ const getTotalCountsByDate = async (id, callback) => {
   return results;
 };
 
-const errorIfInvalidID = (id) => {
-  if (Number.isNaN(Number(id)))
-    throw new Error("Requested ID must be a number.");
+const isIdValid = (req, res, next) => {
+  const id = req.params.nlId || req.params.userId;
+  if (Number.isNaN(Number(id))) {
+    res.status(400).json("Error: Queried ID must be a number.");
+  }
+  next();
 };
 
-module.exports = { getDateString, getTotalCountsByDate, errorIfInvalidID };
+module.exports = { getDateString, getTotalCountsByDate, isIdValid };
