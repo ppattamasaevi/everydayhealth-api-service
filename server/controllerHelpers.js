@@ -14,4 +14,4 @@ const getTotalCountsByDate = async (id, callback) => {
   return results;
 };
 
-module.exports = { getTotalCountsByDate };
+module.exports = { getDateString, getTotalCountsByDate };
