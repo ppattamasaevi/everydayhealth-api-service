@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost:27017/user-nl-tracking")
+  .connect("mongodb://db:27017/user-nl-tracking")
   .catch((error) => console.error(error.message));
 
 const userActions = new mongoose.Schema({
