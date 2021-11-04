@@ -1,42 +1,41 @@
 require("dotenv").config();
 const express = require("express");
 const { getUserActions, getNLActions } = require("../db/methods");
-const { getDateString } = require("../utils/helpers");
+const { getTotalCountsByDate } = require("./controllerHelpers");
 
 const app = express();
 
-// Provided valid NL id, route returns object with daily counts of actions against a newsletter
+// Provided valid NL id, returns object with daily counts of actions against a newsletter
 // Satisfies GetNLSummary requirement
+
 app.get("/nlsummary/:nlId", async (req, res, next) => {
   const nlId = req.params.nlId;
-  const results = {};
   try {
-    const nlActions = await getNLActions(nlId);
-    for (const action of nlActions) {
-      const actionDate = getDateString(action.activity_date);
-      results[actionDate] = ++results[actionDate] || 1;
-    }
+    const results = await getTotalCountsByDate(nlId, getNLActions);
     res.json(results);
   } catch (err) {
     next(err);
   }
 });
 
-// Provided valid userId, route returns object with daily counts of actions taken by user
+// Provided valid userId, returns object with daily counts of actions taken by user
 // Satisfies GetUserSummary requirement
 app.get("/usersummary/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const results = {};
   try {
-    const userActions = await getUserActions(userId);
-    for (const action of userActions) {
-      const actionDate = getDateString(action.activity_date);
-      results[actionDate] = ++results[actionDate] || 1;
-    }
+    const results = await getTotalCountsByDate(userId, getUserActions);
     res.json(results);
   } catch (err) {
     next(err);
   }
+});
+
+// Provided valid NL id, returns object with daily open and click counts against a newsletter
+// Satistfies GetNLActionSummary
+app.get("nlactionsummary/:nlId", (req, res, next) => {
+  const nlId = req.params.nlId;
+  const results = {};
 });
 
 const port = process.env.PORT || 3000;
