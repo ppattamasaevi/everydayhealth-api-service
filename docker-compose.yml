@@ -1,0 +1,17 @@
+services:
+  server:
+    container_name: newsletter-api-service
+    restart: always
+    build: .
+    ports:
+      - "80:3000"
+    links:
+      - db
+  db:
+    container_name: mongo
+    restart: always
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodata:/data/db
