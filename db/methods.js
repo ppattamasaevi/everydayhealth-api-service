@@ -26,7 +26,7 @@ module.exports = {
     try {
       const allNewsletterActions = await UserActions.find({
         newsletter_id: nlId,
-      });
+      }).sort({ activity_date: 1 });
       console.log(
         `Found ${allNewsletterActions.length} newsletter activity docs`
       );
