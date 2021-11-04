@@ -9,17 +9,16 @@ module.exports = {
     });
   },
   // returns array of all actions by a single user
-  getUserActions: (userId) => {
-    UserActions.find({ user_id: userId }, (err, results) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(
-          `Retrieved ${results.length} user actions summary documents`
-        );
-        return results;
-      }
-    });
+  getUserActions: async (userId) => {
+    try {
+      const userActions = await UserActions.find({ user_id: userId });
+      console.log(
+        `Retrieved ${userActions.length} user actions summary documents`
+      );
+      return userActions;
+    } catch (err) {
+      console.error(err.message);
+    }
   },
   // returns array of all actions against a single newsletter
   getNLActions: (nlId) => {
