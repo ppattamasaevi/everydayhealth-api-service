@@ -11,6 +11,7 @@ app.get("/nlsummary/:nlId", async (req, res, next) => {
   const nlId = req.params.nlId;
   try {
     const results = await getTotalCountsByDate(nlId, getNLActions);
+    results.description = `Summary of daily activities for newsletter ID: ${nlId}`;
     res.json(results);
   } catch (err) {
     next(err);
@@ -23,6 +24,7 @@ app.get("/usersummary/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   try {
     const results = await getTotalCountsByDate(userId, getUserActions);
+    results.description = `Summary of daily activities by user ID: ${userId}`;
     res.json(results);
   } catch (err) {
     next(err);
@@ -34,18 +36,20 @@ app.get("/usersummary/:userId", async (req, res, next) => {
 app.get("/nlactionsummary/:nlId", async (req, res, next) => {
   const nlId = req.params.nlId;
   try {
-    const results = {};
+    const results = { data: {} };
     const allActivities = await getNLActions(nlId);
     for (const activity of allActivities) {
+      const resultsData = results.data;
       const date = getDateString(activity.activity_date);
       const { action } = activity;
-      if (results[date]) {
-        results[date][action] = ++results[date][action];
+      if (resultsData[date]) {
+        resultsData[date][action] = ++resultsData[date][action];
       } else {
-        results[date] = { open: 0, click: 0 };
-        results[date][action] = ++results[date][action];
+        resultsData[date] = { open: 0, click: 0 };
+        resultsData[date][action] = ++resultsData[date][action];
       }
     }
+    results.description = `Summary of daily 'open' and 'click' activities for newsletter ID: ${nlId}`;
     res.json(results);
   } catch (err) {
     next(err);

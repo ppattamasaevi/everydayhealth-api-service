@@ -5,11 +5,11 @@ const getDateString = (dateObj) => {
 
 // Async-fetches all daily activities based on provided user/NL id, and returns date-formatted results object
 const getTotalCountsByDate = async (id, callback) => {
-  const results = {};
+  const results = { data: {} };
   const actions = await callback(id);
   for (const action of actions) {
     const actionDate = getDateString(action.activity_date);
-    results[actionDate] = ++results[actionDate] || 1;
+    results.data[actionDate] = ++results.data[actionDate] || 1;
   }
   return results;
 };
