@@ -15,6 +15,9 @@ app.get("/nlsummary/:nlId", isIdValid, async (req, res, next) => {
   const nlId = req.params.nlId;
   try {
     const results = await getTotalCountsByDate(nlId, getNLActions);
+    if (!results) {
+      res.status(404).json("404: No documents found for requested ID.");
+    }
     results.description = `Summary of daily activities for newsletter ID: ${nlId}`;
     res.json(results);
   } catch (err) {
@@ -28,6 +31,9 @@ app.get("/usersummary/:userId", isIdValid, async (req, res, next) => {
   const userId = req.params.userId;
   try {
     const results = await getTotalCountsByDate(userId, getUserActions);
+    if (!results) {
+      res.status(404).json("404: No documents found for requested ID.");
+    }
     results.description = `Summary of daily activities by user ID: ${userId}`;
     res.json(results);
   } catch (err) {
@@ -42,6 +48,9 @@ app.get("/nlactionsummary/:nlId", isIdValid, async (req, res, next) => {
   try {
     const results = { data: {} };
     const allActivities = await getNLActions(nlId);
+    if (!allActivities.length) {
+      res.status(404).json("404: No documents found for requested ID.");
+    }
     for (const activity of allActivities) {
       const resultsData = results.data;
       const date = getDateString(activity.activity_date);
