@@ -1,5 +1,5 @@
 const { saveOne, getUserActions, getNLActions } = require("./methods.js");
 
-console.log(getUserActions);
-// getUserActions(5);
+getUserActions(5).then((data) => console.log(data));
+
 // getNLActions(102);
