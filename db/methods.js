@@ -14,7 +14,9 @@ module.exports = {
       if (err) {
         console.error(err);
       } else {
-        console.log(results);
+        console.log(
+          `Retrieved ${results.length} user actions summary documents`
+        );
         return results;
       }
     });
@@ -25,7 +27,9 @@ module.exports = {
       if (err) {
         console.error(err);
       } else {
-        console.log(results.length);
+        console.log(
+          `Retrieved ${results.length} newsletter actions summary documents`
+        );
         return results;
       }
     });
