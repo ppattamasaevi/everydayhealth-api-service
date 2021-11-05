@@ -6,7 +6,7 @@ A containerized RESTful API service consisting of an Express server connected to
 
 Run `docker compose up` from the root directory to spin up the API service.
 
-Once running, the application will 1) start an Express server and 2) parse the .csv file and load data into MongoDB.
+Once running, the application will 1) start an Express server and 2) parse the .csv file and load data into MongoDB. The service is then ready to handle HTTP requests (for example, to `http://localhost/usersummary/1`).
 
 The Express server defaults to listening on port 3000, connects to MongoDB on port 27017. The default path to the .csv file is './data/data.csv'.
 
