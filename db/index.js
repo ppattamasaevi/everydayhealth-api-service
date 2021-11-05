@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect("mongodb://db:27017/user-nl-tracking")
-  .catch((error) => console.error(error.message));
+  .catch((error) => console.error("DB connection error", error.message));
 
 const userActions = new mongoose.Schema({
   user_id: { type: Number, required: true },
