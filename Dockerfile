@@ -6,8 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN mkdir mongodata
-
 COPY . .
 
 EXPOSE 3000
