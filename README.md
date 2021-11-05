@@ -2,7 +2,7 @@
 
 A containerized RESTful API service consisting of an Express server connected to a MongoDB database, composed together via the Docker engine.
 
-### Install:<br/>
+### Install  
 
 Run `docker compose up` from the root directory to spin up the API service.
 
@@ -12,7 +12,7 @@ The Express server defaults to listening on port 3000, connects to MongoDB on po
 
 To assign a custom server port number (e.g. `PORT=8000`) or a custom name to the .csv file (e.g. `csvFilePath=./data/newData.csv`), simply do so in a `.env` file saved to the root directory.
 
-### API Endpoints:
+### API Endpoints  
 
 The service exposes the following endpoints:
 
@@ -20,7 +20,7 @@ The service exposes the following endpoints:
 - **GET /usersummary/:userId** : Provided a valid user ID, returns an object with daily counts of all activities (click + open) by the user.
 - **GET /nlactionsummary/:nlId** : Provided a valid newsletter ID, returns an object with daily activities by users against the newsletter, broken down into open counts versus click counts.
 
-### Initial Data
+### Initial Data  
 
 The initial .csv file contains records for user activites against newsletters with the follow schema, which matches the Mongoose schema used by the service:
 
