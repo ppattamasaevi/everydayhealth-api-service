@@ -2,7 +2,7 @@
 
 A containerized RESTful API service consisting of an Express server connected to a MongoDB database, composed together via the Docker engine.
 
-### Install:
+### Install:<br/>
 
 Run `docker compose up` from the root directory to spin up the API service.
 
