@@ -3,11 +3,12 @@ const { parse } = require("fast-csv");
 const fs = require("fs");
 const { saveOne } = require("../db/methods");
 
-const csvStream = fs.createReadStream(process.env.csvFilePath);
+const filePath = process.env.csvFilePath || "./data/data.csv";
+
+const csvStream = fs.createReadStream(filePath);
 const csvParser = parse({ headers: true })
   .on("data", (row) => {
-    console.log(row);
-    // saveOne(row);
+    saveOne(row);
   })
   .on("error", (error) => console.error(error.message))
   .on("end", (rowCount) => {
