@@ -1,6 +1,6 @@
 # everydayhealth-api-service
 
-A containerized RESTful API service.
+A containerized RESTful API service consisting of an Express server connected to a MongoDB database, composed together via the Docker engine.
 
 ### Install:
 
