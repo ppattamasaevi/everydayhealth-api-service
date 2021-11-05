@@ -20,6 +20,7 @@ The service exposes the following endpoints:
 - **GET /usersummary/:userId** : Provided a valid user ID, returns an object with daily counts of all activities (click + open) by the user.
 - **GET /nlactionsummary/:nlId** : Provided a valid newsletter ID, returns an object with daily activities by users against the newsletter, broken down into open counts versus click counts.
 
+
 ## Initial Data  
 
 The initial .csv file contains records for user activites against newsletters with the follow schema, which matches the Mongoose schema used by the service:
